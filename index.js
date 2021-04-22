@@ -1,10 +1,14 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
+const cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
 
 
 app.get('/greet', (req, res) => {
-    res.send("Hey There!")
+    const { name, animal } = req.cookies
+    res.send(`Hey there ${name}, your favorite animal is: ${animal}`)
 })
 
 app.get('/setname', (req, res) => {
